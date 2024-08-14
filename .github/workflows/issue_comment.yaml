@@ -3,14 +3,14 @@ name: issue_comment
 on:
   issues:
     types: [opened]
+  
+  workflow_dispatch:
 
 
 jobs:
     comment:
         runs-on: ubuntu-latest
         steps:
-            - name: dump github context
-              env:
-                  GITHUB_CONTEXT: ${{ toJson(github.event) }}
-              run: echo "$GITHUB_CONTEXT" | jq
-              shell: bash
+             - name: Create Comment
+               uses: peter-evans/create-or-update-comment@v1
+               
